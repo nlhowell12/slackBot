@@ -100,6 +100,7 @@ def handle_command(command, channel):
         channel=channel,
         text=response or default_response
     )
+    return response
 
 
 def main():

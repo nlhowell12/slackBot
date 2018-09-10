@@ -72,3 +72,49 @@ The Good, the Bad and the Ugly
 Fight Club.
 2018-09-10 12:16:53,339:WARNING:MainThread:Received signal: 2
 2018-09-10 12:16:53,339:INFO:MainThread:Shutting Down! Nick_Bot uptime: 21.61094594 seconds.
+2018-09-10 13:08:55,884:INFO:MainThread:Nick_Bot running!
+2018-09-10 13:09:13,084:INFO:MainThread:Received command: top10movies in channel: GCQLT28FP
+2018-09-10 13:09:13,784:INFO:MainThread:Reponded with 
+The Shawshank Redemption
+The Godfather
+The Godfather: Part II
+The Dark Knight
+12 Angry Men
+Schindler's List
+The Lord of the Rings: The Return of the King
+Pulp Fiction
+The Good, the Bad and the Ugly
+Fight Club.
+2018-09-10 13:09:18,647:WARNING:MainThread:Received signal: 2
+2018-09-10 13:09:18,647:INFO:MainThread:Shutting Down! Nick_Bot uptime: 22.7628679276 seconds.
+2018-09-10 13:09:26,886:INFO:MainThread:Received command: 42 in channel: channel
+2018-09-10 13:09:53,351:INFO:MainThread:Received command: 42 in channel: channel
+2018-09-10 13:09:53,351:INFO:MainThread:Reponded with 
+Life, the Universe, and Everything.
+2018-09-10 13:10:34,862:INFO:MainThread:Received command: 42 in channel: channel
+2018-09-10 13:10:34,863:INFO:MainThread:Reponded with 
+Life, the Universe, and Everything.
+2018-09-10 13:10:35,040:INFO:MainThread:Received command: top10movies in channel: channel
+2018-09-10 13:10:35,758:INFO:MainThread:Reponded with 
+The Shawshank Redemption
+The Godfather
+The Godfather: Part II
+The Dark Knight
+12 Angry Men
+Schindler's List
+The Lord of the Rings: The Return of the King
+Pulp Fiction
+The Good, the Bad and the Ugly
+Fight Club.
+2018-09-10 13:10:35,911:INFO:MainThread:Received command: worst10movies in channel: channel
+2018-09-10 13:10:36,474:INFO:MainThread:Reponded with 
+Fifty Shades of Grey
+Furry Vengeance
+RoboCop 3
+Book of Shadows: Blair Witch 2
+Plan 9 from Outer Space
+Super Mario Bros.
+One Missed Call
+Extreme Movie
+Material Girls
+The Oogieloves in the Big Balloon Adventure.
