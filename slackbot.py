@@ -107,6 +107,11 @@ def main():
     signal.signal(signal.SIGINT, receive_signal)
     signal.signal(signal.SIGTERM, receive_signal)
     if sc.rtm_connect(with_team_state=False):
+        sc.api_call(
+            'chat.postMessage',
+            channel="GCQLT28FP",
+            text="Nick_Bot will slap you with knowledge!"
+        )
         start_time = time.time()
         logger.info("Nick_Bot running!")
         # Read bot's user ID by calling Web API method `auth.test`
@@ -119,6 +124,17 @@ def main():
             time.sleep(RTM_READ_DELAY)
         logger.info("Shutting Down! Nick_Bot uptime: {} seconds.".format(
             time.time() - start_time))
+        sc.api_call(
+            'chat.postMessage',
+            channel="GCQLT28FP",
+            text=("I've seen things you people wouldn't believe. "
+                    "Attack ships on fire off the shoulder of Orion. "
+                    "I watched C-beams glitter in the dark "
+                    "near the Tannhauser Gate. "
+                    "All those moments will be lost in time, "
+                    "like tears in rain.\n"
+                    "Time to die.")
+        )
     else:
         logger.exception("Connection Failed!  Exception traceback above.")
 
