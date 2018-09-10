@@ -1,0 +1,74 @@
+2018-09-10 11:15:40,749:INFO:MainThread:Nick_Bot running!
+2018-09-10 11:16:30,016:INFO:MainThread:Attempted to handle command: 42 in channel: CCD7MHJD8
+2018-09-10 11:19:23,641:INFO:MainThread:Nick_Bot running!
+2018-09-10 11:19:31,790:WARNING:MainThread:Received signal: 2
+2018-09-10 11:19:31,792:INFO:MainThread:Shutting Down! Nick_Bot uptime: 8.14967393875 seconds.
+2018-09-10 11:47:14,897:INFO:MainThread:Nick_Bot running!
+2018-09-10 11:47:43,203:INFO:MainThread:Received command: test in channel: CCD7MHJD8
+2018-09-10 11:47:52,512:INFO:MainThread:Received command: top10 in channel: CCD7MHJD8
+2018-09-10 11:48:53,967:INFO:MainThread:Nick_Bot running!
+2018-09-10 11:49:01,125:INFO:MainThread:Received command: top10 in channel: CCD7MHJD8
+2018-09-10 11:50:01,150:INFO:MainThread:Received command: top10 in channel: CCD7MHJD8
+2018-09-10 11:52:48,656:WARNING:MainThread:Received signal: 2
+2018-09-10 11:52:48,656:INFO:MainThread:Shutting Down! Nick_Bot uptime: 234.689353943 seconds.
+2018-09-10 11:57:09,744:INFO:MainThread:Nick_Bot running!
+2018-09-10 11:57:20,900:INFO:MainThread:Received command: top10 in channel: CCD7MHJD8
+2018-09-10 11:58:47,317:INFO:MainThread:Nick_Bot running!
+2018-09-10 11:59:03,509:INFO:MainThread:Received command: top10 in channel: CCD7MHJD8
+2018-09-10 12:00:22,890:INFO:MainThread:Nick_Bot running!
+2018-09-10 12:00:29,035:INFO:MainThread:Received command: top10 in channel: GCQLT28FP
+2018-09-10 12:01:19,297:WARNING:MainThread:Received signal: 2
+2018-09-10 12:01:19,298:INFO:MainThread:Shutting Down! Nick_Bot uptime: 56.4078249931 seconds.
+2018-09-10 12:01:21,267:INFO:MainThread:Nick_Bot running!
+2018-09-10 12:01:28,411:INFO:MainThread:Received command: top10 in channel: GCQLT28FP
+2018-09-10 12:04:59,674:INFO:MainThread:Nick_Bot running!
+2018-09-10 12:05:10,833:INFO:MainThread:Received command: top10 in channel: GCQLT28FP
+2018-09-10 12:05:35,935:WARNING:MainThread:Received signal: 2
+2018-09-10 12:05:35,935:INFO:MainThread:Shutting Down! Nick_Bot uptime: 36.2610838413 seconds.
+2018-09-10 12:05:38,801:INFO:MainThread:Nick_Bot running!
+2018-09-10 12:06:07,019:INFO:MainThread:Received command: top10 in channel: GCQLT28FP
+2018-09-10 12:08:48,543:WARNING:MainThread:Received signal: 2
+2018-09-10 12:08:48,543:INFO:MainThread:Shutting Down! Nick_Bot uptime: 189.741566896 seconds.
+2018-09-10 12:12:54,419:INFO:MainThread:Nick_Bot running!
+2018-09-10 12:13:09,598:INFO:MainThread:Received command: worst10movies in channel: GCQLT28FP
+2018-09-10 12:13:10,232:INFO:MainThread:Reponsed with Fifty Shades of Grey
+Furry Vengeance
+RoboCop 3
+Book of Shadows: Blair Witch 2
+Plan 9 from Outer Space
+Super Mario Bros.
+One Missed Call
+Extreme Movie
+Material Girls
+The Oogieloves in the Big Balloon Adventure.
+2018-09-10 12:14:11,486:WARNING:MainThread:Received signal: 2
+2018-09-10 12:14:11,487:INFO:MainThread:Shutting Down! Nick_Bot uptime: 77.0679788589 seconds.
+2018-09-10 12:15:41,456:INFO:MainThread:Nick_Bot running!
+2018-09-10 12:15:50,615:INFO:MainThread:Received command: top10movies in channel: GCQLT28FP
+2018-09-10 12:15:51,245:INFO:MainThread:Reponsed with The Shawshank Redemption
+The Godfather
+The Godfather: Part II
+The Dark Knight
+12 Angry Men
+Schindler's List
+The Lord of the Rings: The Return of the King
+Pulp Fiction
+The Good, the Bad and the Ugly
+Fight Club.
+2018-09-10 12:16:29,183:WARNING:MainThread:Received signal: 2
+2018-09-10 12:16:29,183:INFO:MainThread:Shutting Down! Nick_Bot uptime: 47.7273979187 seconds.
+2018-09-10 12:16:31,728:INFO:MainThread:Nick_Bot running!
+2018-09-10 12:16:38,880:INFO:MainThread:Received command: top10movies in channel: GCQLT28FP
+2018-09-10 12:16:39,610:INFO:MainThread:Reponded with 
+ The Shawshank Redemption
+The Godfather
+The Godfather: Part II
+The Dark Knight
+12 Angry Men
+Schindler's List
+The Lord of the Rings: The Return of the King
+Pulp Fiction
+The Good, the Bad and the Ugly
+Fight Club.
+2018-09-10 12:16:53,339:WARNING:MainThread:Received signal: 2
+2018-09-10 12:16:53,339:INFO:MainThread:Shutting Down! Nick_Bot uptime: 21.61094594 seconds.

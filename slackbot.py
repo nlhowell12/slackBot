@@ -4,6 +4,8 @@ import os
 import time
 import logging
 import re
+import signal
+from imdb import IMDb
 
 load_dotenv()
 slack_token = os.environ.get("SLACK_API_TOKEN")
@@ -12,6 +14,28 @@ nickbot_id = None
 RTM_READ_DELAY = 1
 EXAMPLE_COMMAND = "do"
 MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
+
+"""Setting up logger"""
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+file_handler = logging.FileHandler('slackbot.log')
+formatter = logging.Formatter(
+    "%(asctime)s:%(levelname)s:%(threadName)s:%(message)s")
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+
+running_flag = True
+ia = IMDb()
+
+
+def receive_signal(signum, stack):
+    """Logs Interrupt and Termination signals"""
+    logger.warning("Received signal: {}".format(signum))
+    global running_flag
+    if signum == signal.SIGINT:
+        running_flag = False
+    if signum == signal.SIGTERM:
+        running_flag = False
 
 
 def parse_bot_commands(slack_events):
@@ -49,14 +73,26 @@ def handle_command(command, channel):
         Executes bot command if the command is known
     """
     # Default response is help text for the user
-    default_response = "Not sure what you mean. Try *{}*.".format(
-        42)
-
+    default_response = "Not sure what you mean. Try *{}*, *{}*.".format(
+        42, "top10movies", "worst10movies")
+    logger.info("Received command: {} in channel: {}".format(
+        command, channel))
     # Finds and executes the given command, filling in response
     response = None
     # This is where you start to implement more commands!
     if command.startswith('42'):
         response = "Life, the Universe, and Everything"
+    elif command.startswith('top10movies'):
+        top10 = []
+        for movie in ia.get_top250_movies()[0:10]:
+            top10.append(movie['title'])
+        response = "\n".join(top10)
+    elif command.startswith('worst10movies'):
+        worst10 = []
+        for movie in ia.get_bottom100_movies()[-10:]:
+            worst10.append(movie['title'])
+        response = "\n".join(worst10)
+    logger.info("Reponded with \n{}.".format(response))
 
     # Sends the response back to the channel
     sc.api_call(
@@ -67,18 +103,23 @@ def handle_command(command, channel):
 
 
 def main():
+    signal.signal(signal.SIGINT, receive_signal)
+    signal.signal(signal.SIGTERM, receive_signal)
     if sc.rtm_connect(with_team_state=False):
-        print("Nick Bot connected and running!")
+        start_time = time.time()
+        logger.info("Nick_Bot running!")
         # Read bot's user ID by calling Web API method `auth.test`
         global nickbot_id
         nickbot_id = sc.api_call("auth.test")["user_id"]
-        while True:
+        while running_flag:
             command, channel = parse_bot_commands(sc.rtm_read())
             if command:
                 handle_command(command, channel)
             time.sleep(RTM_READ_DELAY)
+        logger.info("Shutting Down! Nick_Bot uptime: {} seconds.".format(
+            time.time() - start_time))
     else:
-        print("Connection failed. Exception traceback printed above.")
+        logger.exception("Connection Failed!  Exception traceback above.")
 
 
 if __name__ == '__main__':
