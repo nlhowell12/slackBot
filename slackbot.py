@@ -76,7 +76,7 @@ def parse_direct_mention(message_text):
         None, None)
 
 
-def handle_command(command, channel, user_id):
+def handle_command(command, channel):
     """
         Executes bot command if the command is known
     """
