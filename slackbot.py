@@ -51,6 +51,14 @@ def parse_bot_commands(slack_events):
             user_id, message = parse_direct_mention(event["text"])
             if user_id == nickbot_id:
                 return message, event["channel"]
+            elif sc.api_call('users.info', user=user_id)['user']['is_bot']:
+                username = (sc.api_call(
+                    'users.info', user=user_id)['user']['real_name'])
+                sc.api_call(
+                    "chat.postMessage",
+                    channel=event['channel'],
+                    text="<@{}> exit".format(username)
+                )
     return None, None
 
 
@@ -68,14 +76,17 @@ def parse_direct_mention(message_text):
         None, None)
 
 
-def handle_command(command, channel):
+def handle_command(command, channel, user_id):
     """
         Executes bot command if the command is known
     """
+    global running_flag
     # Default response is help text for the user
-    default_response = "Not sure what you mean. Try *{}*, *{}*.".format(
-        42, "top10movies", "worst10movies")
-    logger.info("Received command: {} in channel: {}".format(
+    default_response = ("Not sure what you mean."
+                        "Try *{}*, *{}*, *{}*, or *{}*.".format(
+                            42, "top10movies", "worst10movies",
+                            "Voight-Kampf"))
+    logger.debug("Received command: {} in channel: {}".format(
         command, channel))
     # Finds and executes the given command, filling in response
     response = None
@@ -92,7 +103,11 @@ def handle_command(command, channel):
         for movie in ia.get_bottom100_movies()[-10:]:
             worst10.append(movie['title'])
         response = "\n".join(worst10)
-    logger.info("Reponded with \n{}.".format(response))
+    elif command.startswith('Voight-Kampf'):
+        response = "You've found a replicant, time to *retire* it."
+    elif command.startswith('retire'):
+        running_flag = False
+    logger.debug("Reponded with \n{}.".format(response))
 
     # Sends the response back to the channel
     sc.api_call(
@@ -107,34 +122,45 @@ def main():
     signal.signal(signal.SIGINT, receive_signal)
     signal.signal(signal.SIGTERM, receive_signal)
     if sc.rtm_connect(with_team_state=False):
-        sc.api_call(
-            'chat.postMessage',
-            channel="GCQLT28FP",
-            text="Nick_Bot will slap you with knowledge!"
-        )
+        channels = sc.api_call('conversations.list')['channels']
+        for group in sc.api_call('groups.list')['groups']:
+            channels.append(group)
+        print channels
+        for channel in channels:
+            sc.api_call(
+                'chat.postMessage',
+                channel=channel['id'],
+                text="Nick_Bot will slap you with knowledge!"
+            )
         start_time = time.time()
         logger.info("Nick_Bot running!")
         # Read bot's user ID by calling Web API method `auth.test`
         global nickbot_id
         nickbot_id = sc.api_call("auth.test")["user_id"]
         while running_flag:
-            command, channel = parse_bot_commands(sc.rtm_read())
-            if command:
-                handle_command(command, channel)
-            time.sleep(RTM_READ_DELAY)
+            try:
+                command, channel = parse_bot_commands(sc.rtm_read())
+                if command:
+                    handle_command(command, channel)
+                time.sleep(RTM_READ_DELAY)
+            except Exception:
+                logger.exception(Exception)
+                logger.info("Restarting...")
+                time.sleep(5)
         logger.info("Shutting Down! Nick_Bot uptime: {} seconds.".format(
             time.time() - start_time))
-        sc.api_call(
-            'chat.postMessage',
-            channel="GCQLT28FP",
-            text=("I've seen things you people wouldn't believe. "
-                    "Attack ships on fire off the shoulder of Orion. "
-                    "I watched C-beams glitter in the dark "
-                    "near the Tannhauser Gate. "
-                    "All those moments will be lost in time, "
-                    "like tears in rain.\n"
-                    "Time to die.")
-        )
+        for channel in channels:
+            sc.api_call(
+                'chat.postMessage',
+                channel=channel['id'],
+                text=("I've seen things you people wouldn't believe. "
+                      "Attack ships on fire off the shoulder of Orion. "
+                      "I watched C-beams glitter in the dark "
+                      "near the Tannhauser Gate. "
+                      "All those moments will be lost in time, "
+                      "like tears in rain.\n"
+                      "Time to die.")
+            )
     else:
         logger.exception("Connection Failed!  Exception traceback above.")
 
