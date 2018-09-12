@@ -125,7 +125,6 @@ def main():
         channels = sc.api_call('conversations.list')['channels']
         for group in sc.api_call('groups.list')['groups']:
             channels.append(group)
-        print channels
         for channel in channels:
             sc.api_call(
                 'chat.postMessage',
