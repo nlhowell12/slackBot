@@ -135,7 +135,6 @@ def main():
         # Read bot's user ID by calling Web API method `auth.test`
         global nickbot_id
         nickbot_id = sc.api_call("auth.test")["user_id"]
-        print nickbot_id
         while running_flag:
             try:
                 command, channel = parse_bot_commands(sc.rtm_read())
