@@ -86,7 +86,7 @@ def handle_command(command, channel):
     global running_flag
     # Default response is help text for the user
     default_response = ("Not sure what you mean."
-                        "Try *{}*, *{}*, *{}*, or *{}*.".format(
+                        "Try *{}*, *{}*, or *{}*.".format(
                             42, "top10movies", "worst10movies",
                             "Voight-Kampf"))
     logger.debug("Received command: {} in channel: {}".format(
@@ -106,10 +106,6 @@ def handle_command(command, channel):
         for movie in ia.get_bottom100_movies()[-10:]:
             worst10.append(movie['title'])
         response = "\n".join(worst10)
-    elif command.startswith('Voight-Kampf'):
-        response = "You've found a replicant, time to *retire* it."
-    elif command.startswith('retire'):
-        running_flag = False
     logger.debug("Reponded with \n{}.".format(response))
 
     # Sends the response back to the channel
