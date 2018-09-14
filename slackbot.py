@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import time
 import logging
+from logging.handlers import RotatingFileHandler
 import re
 import signal
 from imdb import IMDb
@@ -18,7 +19,9 @@ MENTION_REGEX = "^<@(|[WU].+?)>(.*)"
 """Setting up logger"""
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler('slackbot.log')
+file_handler = RotatingFileHandler(
+    'slackbot.log', mode='a', maxBytes=5*1024*1024, backupCount=2,
+    encoding=None, delay=0)
 formatter = logging.Formatter(
     "%(asctime)s:%(levelname)s:%(threadName)s:%(message)s")
 file_handler.setFormatter(formatter)
@@ -136,6 +139,7 @@ def main():
         # Read bot's user ID by calling Web API method `auth.test`
         global nickbot_id
         nickbot_id = sc.api_call("auth.test")["user_id"]
+        print nickbot_id
         while running_flag:
             try:
                 command, channel = parse_bot_commands(sc.rtm_read())
