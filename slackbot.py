@@ -54,14 +54,14 @@ def parse_bot_commands(slack_events):
             user_id, message = parse_direct_mention(event["text"])
             if user_id == nickbot_id:
                 return message, event["channel"]
-            elif sc.api_call('users.info', user=user_id)['user']['is_bot']:
-                username = (sc.api_call(
-                    'users.info', user=user_id)['user']['real_name'])
-                sc.api_call(
-                    "chat.postMessage",
-                    channel=event['channel'],
-                    text="<@{}> exit".format(username)
-                )
+            # elif sc.api_call('users.info', user=user_id)['user']['is_bot']:
+            #     username = (sc.api_call(
+            #         'users.info', user=user_id)['user']['real_name'])
+            #     sc.api_call(
+            #         "chat.postMessage",
+            #         channel=event['channel'],
+            #         text="<@{}> exit".format(username)
+            #     )
     return None, None
 
 
