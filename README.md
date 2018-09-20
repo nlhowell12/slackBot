@@ -1,7 +1,6 @@
 # Nick_Bot
 
 Nick_Bot is a slack bot that can tell you what the top 10 and worst 10 movies are on IMDb and respond to 42.
-It will also send an exit command to any other bots it detects in the channel.
 
 ### Prerequisites
 
